@@ -21,8 +21,8 @@ public class ArgTest {
         Arg arg=new Arg("l","true",schema);
         try {
             Arg argThrow=new Arg("b","true",schema);
-        }catch (Throwable throwable){
-            assertEquals("java.lang.Throwable: 指令b不支持,请输入受支持的指令",throwable.toString());
+        }catch (Exception throwable){
+            assertEquals("java.lang.Exception: 指令b不支持,请输入受支持的指令",throwable.toString());
         }
         assertEquals("l",arg.getFlag());
         assertEquals(true,arg.parseValue());

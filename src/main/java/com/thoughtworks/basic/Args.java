@@ -10,12 +10,12 @@ public class Args {
     public String ArgText;
     private Schema schema;
     private List<Arg>argList=new ArrayList<>();
-    public Args(String argText,Schema schema) throws Throwable {
+    public Args(String argText,Schema schema) throws Exception {
         this.ArgText=argText;
         this.schema=schema;
         this.argList=this.getArgList();
     }
-    public List<Arg> getArgList() throws Throwable {
+    public List<Arg> getArgList() throws Exception {
         List<String> argListOfSplit=splitToArgs(this.ArgText);
         argListOfSplit=argListOfSplit.subList(1,argListOfSplit.size());
         isArgValid(argListOfSplit);
@@ -36,30 +36,42 @@ public class Args {
         return Arrays.asList(commandText.split("-"));
     }
 
-    private void isArgValid(List<String> argSplitSubList) throws Throwable {
-        argSplitSubList.stream().forEach(arg-> {
+    private void isArgValid(List<String> argSplitSubList) throws Exception {
+        for(String arg : argSplitSubList) {
             if(arg.charAt(0) == ' '){
-                try {
-                    throw new Throwable("-后面不可跟空格字符");
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
+                throw new Exception("-后面不可跟空格字符");
             }
             if (arg.length()==1){
-                try {
-                    throw new Throwable("参数之间不用空格分割非法");
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
+                throw new Exception("参数之间不用空格分割非法");
             }
             if(Arrays.asList(arg.split(" ")).size()>2){
-                try {
-                    throw new Throwable("value中间不能有空格");
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
+                throw new Exception("value中间不能有空格");
             }
-        });
+        }
+//        argSplitSubList.stream().forEach(arg-> {
+//            if(arg.charAt(0) == ' '){
+//                try {
+//                    throw new Exception("-后面不可跟空格字符");
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//            if (arg.length()==1){
+//                try {
+//                    throw new Exception("参数之间不用空格分割非法");
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            if(Arrays.asList(arg.split(" ")).size()>2){
+//                try {
+//                    throw new Throwable("value中间不能有空格");
+//                } catch (Throwable throwable) {
+//                    throwable.printStackTrace();
+//                }
+//            }
+//        });
 
     }
     public Object getValueOf(String flag) throws Throwable {

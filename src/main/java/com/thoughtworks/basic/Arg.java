@@ -4,12 +4,12 @@ public class Arg {
     private String flag;
     private String value;
     private Schema schema;
-    public Arg(String flag,String value,Schema schema) throws Throwable {
+    public Arg(String flag,String value,Schema schema) throws Exception {
         this.flag=flag;
         this.value=value;
         this.schema=schema;
         if(!withFlag(flag)){
-            throw new Throwable("指令"+flag+"不支持,请输入受支持的指令");
+            throw new Exception("指令"+flag+"不支持,请输入受支持的指令");
         }
     }
     public String getFlag(){
@@ -32,5 +32,4 @@ public class Arg {
         }
         return this.value;
     }
-    
 }

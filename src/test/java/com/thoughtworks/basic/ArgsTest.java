@@ -43,18 +43,19 @@ public class ArgsTest {
         Schema schema=new Schema(flagTypes);
         try {
             Args argsThrow=new Args("-l-p str -d /usr/logs",schema);
-        }catch (Throwable throwable){
-            assertEquals("java.lang.Throwable: 参数之间不用空格分割非法",throwable.toString());
+        }catch (Exception throwable){
+            System.out.println("测试是事实是事实是事实是事实是事实");
+            assertEquals("java.lang.Exception: 参数之间不用空格分割非法",throwable.toString());
         }
         try {
             Args argsThrow=new Args("-l-p str -d /usr/logs",schema);
-        }catch (Throwable throwable){
-            assertEquals("java.lang.Throwable: 参数之间不用空格分割非法",throwable.toString());
+        }catch (Exception throwable){
+            assertEquals("java.lang.Exception: 参数之间不用空格分割非法",throwable.toString());
         }
         try {
             Args argsThrow=new Args("- l true -p str -d /us r/logs",schema);
-        }catch (Throwable throwable){
-            assertEquals("java.lang.Throwable: -后面不可跟空格字符",throwable.toString());
+        }catch (Exception throwable){
+            assertEquals("java.lang.Exception: -后面不可跟空格字符",throwable.toString());
         }
 
     }
